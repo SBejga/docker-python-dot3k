@@ -13,7 +13,9 @@ Requires:
 
 ## Build
 
+```
 docker build -t docker.io/library/rpi-docker-dot3k
+```
 
 ## Run
 

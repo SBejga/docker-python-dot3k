@@ -1,0 +1,39 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: rpi-docker-dot3k-deployment
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: rpi-docker-dot3k
+  template:
+    metadata:
+      labels:
+        app: rpi-docker-dot3k
+    spec:
+      containers:
+      - name: rpi-docker-dot3k
+        image: docker.io/library/rpi-docker-dot3k:latest
+        imagePullPolicy: Never
+        volumeMounts:
+        - mountPath: /dev/gpiomem
+          name: dev-gpiomem
+        - mountPath: /dev/i2c-1
+          name: dev-i2c-1
+        securityContext:
+          privileged: true
+        resources:
+          limits:
+            memory: "256Mi"
+            cpu: "200m"
+          requests:
+            memory: "256Mi"
+            cpu: "100m"
+      volumes:
+      - name: dev-gpiomem
+        hostPath:
+          path: /dev/gpiomem
+      - name: dev-i2c-1
+        hostPath:
+          path: /dev/i2c-1
