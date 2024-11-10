@@ -7,7 +7,7 @@ dockerized python code to show information on a raspberry pi 4 with a display-o-
 Tested with a Pi 4 Model B
 
 Requires:
-- GPIO activated
+- SPI activated
 - I2C activated
 - container runtime (docker community edition) installed
 
